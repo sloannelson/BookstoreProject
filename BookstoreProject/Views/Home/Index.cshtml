@@ -8,23 +8,12 @@
 
 @foreach (Book B in Model.Books)
 {
-    <h3>@B.Title</h3>
+    <partial name="ProjectSummary" model="B" />
+             
+ }
 
-    <ul>
-        <li>Author: @B.Author</li>
-        <li>Publisher: @B.Publisher</li>
-        <li>ISBN: @B.Isbn</li>
-        <li>Classification: @B.Classification</li>
-        <li>Category: @B.Category</li>
-        <li>Pages: @B.PageCount</li>
-        <li>Price: @B.Price</li>
-    </ul>
-
-    <br />
-
-}
-
-<div page-blah="@Model.PageInfo" page-action=""></div>
+<div page-blah="@Model.PageInfo" page-action="Index"></div>
 
 
 
+ 
