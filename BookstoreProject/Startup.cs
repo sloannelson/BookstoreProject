@@ -38,6 +38,11 @@ namespace BookstoreProject
             );
 
             services.AddScoped<IBookstoreProjectRepository, EFBookstoreProjectRepository>();
+
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,18 +55,29 @@ namespace BookstoreProject
 
             //corresponds to the wwwroot
             app.UseStaticFiles();
-
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-            endpoints.MapControllerRoute(
-                name: "Paging",
-                pattern: "{pageNum}",
-                defaults: new { Controller = "Home", action = "index" });
-                    
+
+                endpoints.MapControllerRoute("typepage",
+                    "{Category}/Page{pageNum}",
+                    new { Controller = "Home", action = "Index" });
+
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
+
+                endpoints.MapControllerRoute("type",
+                    "{Category}",
+                    new { Controller = "Home", action = "Index", pageNum = 1 });
+
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
         }
     }
