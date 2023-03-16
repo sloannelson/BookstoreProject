@@ -4,16 +4,18 @@
 
 @model BooksViewModel
 
+<div class="col-md-6 blue">
+    @foreach (Book B in Model.Books)
+    {
+        <partial name="ProjectSummary" model="B" />
 
-@foreach (Book B in Model.Books)
-{
-    <partial name="ProjectSummary" model="B" />
-             
- }
-
-<div page-blah="@Model.PageInfo" page-action="Index" page-class="btn"
-     page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-classes-enabled="true"
-     class="btn-group-pull-right m-1"></div>
+    }
 
 
+
+    <div page-blah="@Model.PageInfo" page-action="Index" page-class="btn"
+         page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-classes-enabled="true"
+         class="btn-group-pull-right m-1"></div>
+
+</div>
 
